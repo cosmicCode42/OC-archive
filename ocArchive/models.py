@@ -5,7 +5,7 @@ class User(db.Model):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
-    user_password = db.Column(db.VarChar(15), unique=True, nullable=False)
+    user_password = db.Column(db.String(15), unique=True, nullable=False)
     user_chars = db.relationship("Character", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
@@ -26,9 +26,9 @@ class Character(db.Model):
     # schema for the Character model
     id = db.Column(db.Integer, primary_key=True)
     char_name = db.Column(db.String(125), unique=True, nullable=False)
-    char_blurb = db.Column(db.String(250), unique=True, nullable=False)
-    char_descript = db.Column(db.String(5000), unique=True)
-    char_is_usable = db.Column(db.Boolean)
+    char_blurb = db.Column(db.Text, unique=True, nullable=False)
+    char_descript = db.Column(db.Text, unique=True)
+    char_is_usable = db.Column(db.Boolean, default=False, nullable=False)
     genre_id = db.Column(db.Integer, db.ForeignKey("genre.id", ondelete="CASCADE"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
 
