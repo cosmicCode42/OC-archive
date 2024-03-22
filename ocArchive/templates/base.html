@@ -6,7 +6,12 @@
     <title>OC Archive</title>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <main class="container">
+        <!-- this block takes from whichever page is being rendered -->
+        {% block content %}
+        {% endblock %}
+        <!-- The base.html template is inherited by all other pages - changing something here will change it all over the site! -->
+    </main>
+    
 </body>
 </html>
