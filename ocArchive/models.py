@@ -6,7 +6,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
     user_password = db.Column(db.VarChar(15), unique=True, nullable=False)
-    characters = db.relationship("Character", backref="user", cascade="all, delete", lazy=True)
+    user_chars = db.relationship("Character", backref="user", cascade="all, delete", lazy=True)
 
     def __repr__(self):
         return self.user_name

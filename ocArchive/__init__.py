@@ -21,3 +21,8 @@ db = SQLAlchemy(app)
 
 
 from ocArchive import routes
+
+
+# Call db.create_all() within the application context
+with app.app_context():
+    db.create_all()
