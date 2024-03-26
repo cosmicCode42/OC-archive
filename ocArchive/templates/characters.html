@@ -1,3 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+
+<h3 class="center-align">Characters</h3>
+
+{% for character in characters %}
+<h4><a href="#!">{{ character.char_name }}</a></h4>
+{% endfor %}
+
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('create_character') }}" class="btn indigo lighten-2">
+            Create Character
+        </a>
+    </div>
+</div>
+
 {% endblock %}
