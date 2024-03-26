@@ -50,5 +50,5 @@ def create_character():
 def characters():
     # list of characters
     genres = list(Genre.query.order_by(Genre.genre_name).all())
-    chars = list(Character.query.order_by(Character.character_name).all()) # puts all characters in a list
+    chars = list(Character.query.order_by(Character.char_name).all()) # puts all characters in a list
     return render_template("characters.html", chars=chars, genres=genres)
