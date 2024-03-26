@@ -12,7 +12,7 @@
 
 <body>
     <!-- top navbar; base code from navbar Materialise documentation: https://materializecss.com/navbar.html -->
-    <!-- Base code copied from  mobile collapse section -->
+    <!-- Base code copied from mobile collapse section -->
     <nav>
         <div class="nav-wrapper">
             <a href="{{ url_for('home') }}" class="brand-logo">OC Archive</a>
@@ -21,14 +21,16 @@
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('characters') }}">Characters</a></li>
                 <li><a href="{{ url_for('genres') }}">Genres</a></li>
+                <li><a href="{{ url_for('id_gain') }}">Gain Archiver ID</a></li>
             </ul>
         </div>
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('create_character') }}">Create Character</a></li>
+        <li><a href="{{ url_for('characters') }}">Characters</a></li>
         <li><a href="{{ url_for('genres') }}">Genres</a></li>
+        <li><a href="{{ url_for('id_gain') }}">Gain Archiver ID</a></li>
     </ul>
     <main class="container">
         <!-- this block takes from whichever page is being rendered -->
