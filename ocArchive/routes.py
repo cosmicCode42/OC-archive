@@ -12,7 +12,8 @@ def home():
 
 @app.route("/genres")
 def genres():
-    # list of characters in each genre
+    # list of genres with characters
+    genres = list(Genre.query.order_by(Genre.genre_name).all())
     return render_template("genres.html", genres=genres)
     
 
@@ -23,7 +24,7 @@ def add_genre():
         genre = Genre(genre_name=request.form.get("genre_name"))
         db.session.add(genre)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("genres"))
     return render_template("add_genre.html")
     
 
@@ -43,3 +44,11 @@ def create_character():
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("create_character.html", genres=genres)
+
+
+@app.route("/characters")
+def characters():
+    # list of characters
+    genres = list(Genre.query.order_by(Genre.genre_name).all())
+    chars = list(Character.query.order_by(Character.character_name).all()) # puts all characters in a list
+    return render_template("characters.html", chars=chars, genres=genres)
