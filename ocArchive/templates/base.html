@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <title>OC Archive</title>
 </head>
+
 <body>
+    <!-- top navbar; base code from navbar Materialise documentation: https://materializecss.com/navbar.html -->
+    <!-- Base code copied from  mobile collapse section -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{{ url_for('home') }}" class="brand-logo">OC Archive</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('characters') }}">Characters</a></li>
+                <li><a href="{{ url_for('genres') }}">Genres</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('create_character') }}">Create Character</a></li>
+        <li><a href="{{ url_for('genres') }}">Genres</a></li>
+    </ul>
     <main class="container">
         <!-- this block takes from whichever page is being rendered -->
         {% block content %}
         {% endblock %}
         <!-- The base.html template is inherited by all other pages - changing something here will change it all over the site! -->
     </main>
-    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
+
 </html>
