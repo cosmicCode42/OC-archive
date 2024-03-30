@@ -92,8 +92,8 @@ As a user of the site, I want:
 	- b
 
 ### Bugfixes
-- **Problem:** ...
-	- **Solution:** ...
+- **Problem:** Login system wasn't working. Specifically, ``current_user`` did not exist. This is despite me having imported all necessary components from ``flask_login``.
+	- **Solution:** I had not added necessary code in my ``__init__.py`` file to manage logins. After adding the ``LoginManager`` code and properly creating an instance of it, the code was working again.
 
 ## Technologies Used
 
@@ -152,6 +152,8 @@ Then follow these steps:
 3. Log into [GitPod](https://www.gitpod.io) with your GitHub account.
 4. Navigate into the [Project GitHub repository](https://github.com/cosmicCode42/CI-MP3).
 5. Click the green **GitPod** button in the top right corner of the repository. This will trigger a new GitPod workspace to be created from the code in GitHub where you can work normally.
+
+You will also need to install Flask-SQLAlchemy, psycopg2, Flask-Login and bcrypt. This can be done via ``pip install`` for  each of these (ie ``pip install Flask-SQLAlchemy``, ``pip install psycopg2`` and so on).
 
 ## Credit
 
