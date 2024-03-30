@@ -3,7 +3,7 @@ from flask_login import UserMixin
 import bcrypt
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -11,10 +11,11 @@ class User(db.Model):
     user_chars = db.relationship("Character", backref="user", cascade="all, delete", lazy=True)
 
     def set_password(self, password):
-        self.user_password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        self.user_password_hash = hashed_password.decode('utf-8')  # Decode bytes to string for storage
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.user_password_hash)
+        return bcrypt.checkpw(password.encode('utf-8'), self.user_password_hash.encode('utf-8'))
 
     def __repr__(self):
         return self.user_name

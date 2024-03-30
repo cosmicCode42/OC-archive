@@ -65,11 +65,8 @@ def id_gain():
     users = list(User.query.order_by(User.id).all())
     if request.method == "POST":
         # Hash the password before storing it in the database
-        hashed_password = bcrypt.hashpw(request.form.get("user_password").encode('utf-8'), bcrypt.gensalt())
-        user = User(
-            user_name=request.form.get("user_name"),
-            user_password_hash=hashed_password
-        )
+        user = User(user_name=request.form.get("user_name"))
+        user.set_password(request.form.get("user_password"))
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("home"))
@@ -79,10 +76,10 @@ def id_gain():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form.get("user_name")
+        user_name = request.form.get("user_name")
         password = request.form.get("user_password")
-        user = User.query.filter_by(username=username).first()
-        if user and bcrypt.checkpw(password.encode('utf-8'), user.user_password_hash.encode('utf-8')):
+        user = User.query.filter_by(user_name=user_name).first()
+        if user and user.check_password(password):
             login_user(user)
             flash("Logged in successfully.", "success")
             return redirect(url_for("home"))
