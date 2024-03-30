@@ -21,7 +21,13 @@
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('characters') }}">Characters</a></li>
                 <li><a href="{{ url_for('genres') }}">Genres</a></li>
+                <!-- Conditional rendering in navbar -->
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('id_gain') }}">Gain Archiver ID</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -30,8 +36,26 @@
         <li><a href="{{ url_for('home') }}">Home</a></li>
         <li><a href="{{ url_for('characters') }}">Characters</a></li>
         <li><a href="{{ url_for('genres') }}">Genres</a></li>
+        <!-- Conditional rendering in sidenav -->
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a href="{{ url_for('login') }}">Login</a></li>
         <li><a href="{{ url_for('id_gain') }}">Gain Archiver ID</a></li>
+        {% endif %}
     </ul>
+
+    <!-- Flashed message display code -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <main class="container">
         <!-- this block takes from whichever page is being rendered -->
         {% block content %}
