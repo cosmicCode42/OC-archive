@@ -110,9 +110,9 @@ As a user of the site, I want:
     - [Flask](https://flask.palletsprojects.com/en/3.0.x/)
 	- [Flask-Login](https://pypi.org/project/Flask-Login/)
     - [SQL-Alchemy](https://docs.sqlalchemy.org/en/20/)
+	- [psycopg2](https://www.psycopg.org/docs/) (required to work with PostgreSQL)
+	- [bcrypt](https://pypi.org/project/bcrypt/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
-- [psycopg2](https://www.psycopg.org/docs/) (required to work with PostgreSQL)
-- [bcrypt](https://pypi.org/project/bcrypt/)
 
 ### Testing
 - [Lighthouse](https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
