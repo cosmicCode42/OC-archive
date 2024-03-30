@@ -1,6 +1,8 @@
 from flask import render_template, request, redirect, url_for
 from ocArchive import app, db
 from ocArchive.models import User, Genre, Character
+import flask_login
+import bcrypt
 
 
 @app.route("/")
@@ -32,18 +34,20 @@ def add_genre():
 def create_character():
     # add characters, including their genres
     genres = list(Genre.query.order_by(Genre.genre_name).all())
+    users = list(User.query.order_by(User.id).all())
     if request.method == "POST":
         character = Character(
             char_name=request.form.get("character_name"),
             char_blurb=request.form.get("character_blurb"),
             char_descript=request.form.get("character_description"),
             char_is_usable=request.form.get("character_is_usable"),
-            genre_id=request.form.get("genre_id")
+            genre_id=request.form.get("genre_id"),
+            user_id=current_user.id
         )
         db.session.add(character)
         db.session.commit()
         return redirect(url_for("home"))
-    return render_template("create_character.html", genres=genres)
+    return render_template("create_character.html", genres=genres, users=users)
 
 
 @app.route("/characters")
@@ -57,11 +61,13 @@ def characters():
 @app.route("/id_gain", methods=["GET", "POST"])
 def id_gain():
     # page to create a username and password to use in handling characters
-    users = list(User.query.order_by(User.user_name).all())
+    users = list(User.query.order_by(User.id).all())
     if request.method == "POST":
+        # Hash the password before storing it in the database
+        hashed_password = bcrypt.hashpw(request.form.get("user_password").encode('utf-8'), bcrypt.gensalt())
         user = User(
             user_name=request.form.get("user_name"),
-            user_password=request.form.get("user_password")
+            user_password_hash=hashed_password
         )
         db.session.add(user)
         db.session.commit()
@@ -69,6 +75,3 @@ def id_gain():
     return render_template("id_gain.html", users=users)
 
 
-    # user_name = db.Column(db.String(50), unique=True, nullable=False)
-    # user_password = db.Column(db.String(15), unique=True, nullable=False)
-    # user_chars = db.relationship("Character", backref="user", cascade="all, delete", lazy=True)
