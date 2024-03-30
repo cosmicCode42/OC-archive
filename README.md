@@ -104,9 +104,11 @@ As a user of the site, I want:
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript)
 - [Python](https://docs.python.org/3/)
     - [Flask](https://flask.palletsprojects.com/en/3.0.x/)
+	- [Flask-Login]()
     - [SQL-Alchemy](https://docs.sqlalchemy.org/en/20/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
 - [psycopg2](https://www.psycopg.org/docs/) (required to work with PostgreSQL)
+- [bcrypt]()
 
 ### Testing
 - [Lighthouse](https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
