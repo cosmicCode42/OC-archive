@@ -92,8 +92,12 @@ As a user of the site, I want:
 	- b
 
 ### Bugfixes
-- **Problem:** Login system wasn't working. Specifically, ``current_user`` did not exist. This is despite me having imported all necessary components from ``flask_login``.
-	- **Solution:** I had not added necessary code in my ``__init__.py`` file to manage logins. After adding the ``LoginManager`` code and properly creating an instance of it, the code was working again.
+- **Problem:** I could not access the site at all upon running the app, as ``current_user`` did not exist. This is despite me having imported all necessary components from ``flask_login``.
+	- **Solution:** I had not added necessary code in my ``__init__.py`` file to manage logins. After adding the ``LoginManager`` code and properly creating an instance of it, I could access the site again.
+- **Problem:** Login system was not working (``TypeError: argument 'hashed_password': 'str' object cannot be converted to 'PyBytes'``).
+	- **Solution:** There was a decoding issue in my code for checking passwords. I removed some redundancies in my ``models.py`` and ``routes.py`` code.
+	- **Problem:** I still encountered login issues.
+		-**Solution:** To cut a long story short: my ``User`` model  was not using the extremely necessary ``UserMixin`` provided by Flask-Login. Once I fixed all these issues, the login system was functioning just fine.
 
 ## Technologies Used
 
@@ -104,11 +108,11 @@ As a user of the site, I want:
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/What_is_JavaScript)
 - [Python](https://docs.python.org/3/)
     - [Flask](https://flask.palletsprojects.com/en/3.0.x/)
-	- [Flask-Login]()
+	- [Flask-Login](https://pypi.org/project/Flask-Login/)
     - [SQL-Alchemy](https://docs.sqlalchemy.org/en/20/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
 - [psycopg2](https://www.psycopg.org/docs/) (required to work with PostgreSQL)
-- [bcrypt]()
+- [bcrypt](https://pypi.org/project/bcrypt/)
 
 ### Testing
 - [Lighthouse](https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk)
