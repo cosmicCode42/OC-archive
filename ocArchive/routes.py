@@ -1,7 +1,7 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
+from flask_login import current_user, login_user, logout_user, login_required 
 from ocArchive import app, db
 from ocArchive.models import User, Genre, Character
-import flask_login
 import bcrypt
 
 
@@ -31,6 +31,7 @@ def add_genre():
     
 
 @app.route("/create_character", methods=["GET", "POST"])
+@login_required
 def create_character():
     # add characters, including their genres
     genres = list(Genre.query.order_by(Genre.genre_name).all())
@@ -75,3 +76,24 @@ def id_gain():
     return render_template("id_gain.html", users=users)
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("user_name")
+        password = request.form.get("user_password")
+        user = User.query.filter_by(username=username).first()
+        if user and bcrypt.checkpw(password.encode('utf-8'), user.user_password_hash.encode('utf-8')):
+            login_user(user)
+            flash("Logged in successfully.", "success")
+            return redirect(url_for("home"))
+        else:
+            flash("Invalid username or password.", "error")
+    return render_template("login.html")
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("Logged out successfully.", "success")
+    return redirect(url_for("home"))
