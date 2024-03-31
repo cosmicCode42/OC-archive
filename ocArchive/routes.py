@@ -127,15 +127,26 @@ def characters():
 @app.route("/id_gain", methods=["GET", "POST"])
 def id_gain():
     # page to create a username and password to use in handling characters
-    users = list(User.query.order_by(User.id).all())
     if request.method == "POST":
-        # Hash the password before storing it in the database
-        user = User(user_name=request.form.get("user_name"))
-        user.set_password(request.form.get("user_password"))
-        db.session.add(user)
+        # Check if username already exists
+        user_name = request.form.get("user_name")
+        user_password = request.form.get("user_password")
+
+        existing_user = User.query.filter_by(user_name=user_name).first()
+        if existing_user:
+            flash("Username already exists. Please choose a different username.", "error")
+            return redirect(url_for("id_gain"))
+
+        # Create new user if username is unique
+        new_user = User(user_name=request.form.get("user_name"))
+        new_user.set_password(request.form.get("user_password"))
+        db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for("home"))
-    return render_template("id_gain.html", users=users)
+        
+        flash(f"Welcome to the OC Archive, {new_user.user_name}. You can now log in.", "success")
+        return redirect(url_for("login"))
+
+    return render_template("id_gain.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
