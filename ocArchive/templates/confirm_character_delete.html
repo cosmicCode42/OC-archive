@@ -4,7 +4,12 @@
 <h3 class="center-align">Warning!</h3>
 
 <p>Are you sure you want to delete {{ char.char_name }}?</p>
-<p><a href="{{ url_for('delete_character', char_id=char.id) }}" class="btn green accent-4">Yes</a>
-<p><a href="{{ url_for('characters') }}" class="btn red accent-4">No</a></p>
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('delete_character', char_id=char.id) }}" class="btn green accent-4">Yes</a>
+        <a href="{{ url_for('characters') }}" class="btn red accent-4">No</a>
+    </div>
+</div>
+
 
 {% endblock %}
