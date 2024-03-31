@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Warning!</h3>
+
+<p>Are you sure you want to hand in your Archiver ID? <strong>Doing so will remove all your characters from the Archive
+        permanently and revoke your creation rights.</strong></p>
+<div class="row">
+    <div class="col center-align">
+        <p><a href="{{ url_for('delete_user', user_id=user.id) }}" class="btn red large center-align accent-4">I'm
+                done, chief</a>
+            <a href="{{ url_for('profile', user_id=current_user.id) }}" class="btn green large center-align accent-4">I
+                still have work to do</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -189,3 +189,24 @@ def profile(user_id):
     genres = list(Genre.query.order_by(Genre.genre_name).all())
     chars = list(Character.query.filter_by(user_id=user_id).order_by(Character.char_name).all())
     return render_template("profile.html", chars=chars, genres=genres, user=user)
+
+
+@app.route("/confirm_user_delete/<int:user_id>", methods=["GET", "POST"])
+@login_required
+def confirm_user_delete(user_id):
+    # warning before user deletes their account
+    user = User.query.get_or_404(user_id)
+    if user_id != current_user.id:
+        abort(403)
+    return render_template("confirm_user_delete.html", user=user)
+
+
+@app.route("/delete_user/<int:user_id>", methods=["GET", "POST"])
+@login_required
+def delete_user(user_id):
+    # delete user's account
+    user = User.query.get_or_404(user_id)
+    flash(f"So long, {user.user_name}, and thanks for all the fish.", "success")
+    db.session.delete(user)
+    db.session.commit()
+    return redirect(url_for("home"))

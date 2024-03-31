@@ -16,4 +16,12 @@
     <p>No characters created yet. <a href="{{ url_for('create_character') }}">Create a character</a>?</p>
 {% endif %}
 
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('confirm_user_delete', user_id=current_user.id) }}" class="btn red accent-4">
+            Hand In Archiver ID
+        </a>
+    </div>
+</div>
+
 {% endblock %}
