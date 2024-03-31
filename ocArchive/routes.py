@@ -165,6 +165,6 @@ def logout():
 def profile(user_id):
     # User profile page
     genres = list(Genre.query.order_by(Genre.genre_name).all())
-    chars = list(Character.query.order_by(Character.char_name).all())
+    chars = list(Character.query.filter_by(user_id=user_id).order_by(Character.char_name).all())
     user = User.query.get_or_404(user_id)
     return render_template("profile.html", chars=chars, genres=genres, user=user)
