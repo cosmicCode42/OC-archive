@@ -101,7 +101,11 @@ As a user of the site, I want:
 - **Problem:** Using the checkbox for `character_is_usable` during character submission threw a `TypeError: Not a boolean value: 'on'`.
 	- **Solution:** Checkboxes, by default, return `on` or `off`. The value needed to be a boolean, so I added code to convert `character_is_usable` to a boolean (`True` if `on` or `False` otherwise.)
 - **Problem:** Ran into a few errors with characters being displayed on the Characters page.
-	- **Solution:** A naming issue - I had `chars=chars` in the Characters route, but was using `for character in characters` on the Characters page. Changing `character` to `char` and `characters` to `chars` solved the issue. 
+	- **Solution:** A naming issue - I had `chars=chars` in the Characters route, but was using `for character in characters` on the Characters page. Changing `character` to `char` and `characters` to `chars` solved the issue.
+- **Problem:** Each character created was displaying every user as its creator on the Characters page.
+	- **Solution:** The code on the Characters page was looping through ALL users in the database without checking to see that the user had indeed created the character first. I edited the code so that only the user that actually matched the creator of each character is displayed as the creator.
+	- **Problem:** The page was still displaying one edit and delete button for each user, albeit only to the user that actually made the character.
+		- **Solution:** Coding issue. The display text was put inside the for loop that ran through each user. Moving that code outside the loop solved the issue.
 
 ## Technologies Used
 
