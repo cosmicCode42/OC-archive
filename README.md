@@ -69,7 +69,8 @@ I have used MS Paint to sketch out a basic wireframe for the site:
 ![Wireframe](docs/wireframe.png)
 
 ## Future Additions
-- ?
+- Addition of an administrator user system. Admins would be able to delete genres or remove users from the Archive.
+- Functionality for a user to delete their account from the Archive.
 
 ## Testing
 
@@ -87,8 +88,26 @@ The developer used **W3C CSS Validation Service** and **W3C Markup Validation Se
 
 ### User Stories Testing
 
-As a user of the site, I want: 
-- 1
+As a user of the site, I want:
+- a way to create characters.
+	- a
+	- b
+- a way to edit my existing characters.
+	- a
+	- b
+- a way to delete a character I don't want on the Archive.
+	- a
+	- b
+- an account where all my characters can be stored.
+	- a
+	- b
+- my characters to not be editable by other users.
+	- a
+	- b
+- a way to find characters from the same genre (action, fantasy, slice of life, romance, and so on).
+	- a
+	- b
+- a way to find characters by the same user.
 	- a
 	- b
 
