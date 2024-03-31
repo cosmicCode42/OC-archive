@@ -12,6 +12,12 @@
 
 <body>
     <!-- top navbar; base code from navbar Materialise documentation: https://materializecss.com/navbar.html -->
+    <!-- Base code copied from navbar dropdown section -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="{{ url_for('characters') }}">All Characters</a></li>
+        <li><a href="{{ url_for('genres') }}">By Genre</a></li>
+        <li><a href="{{ url_for('users') }}">By User</a></li>
+    </ul>
     <!-- Base code copied from mobile collapse section -->
     <nav>
         <div class="nav-wrapper black">
@@ -19,8 +25,9 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('characters') }}">Characters</a></li>
-                <li><a href="{{ url_for('genres') }}">Genres</a></li>
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Characters<i
+                            class="material-icons right">arrow_drop_down</i></a></li>
                 <!-- Conditional rendering in navbar -->
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('profile', user_id=current_user.id) }}">Profile</a></li>
@@ -35,8 +42,9 @@
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('characters') }}">Characters</a></li>
-        <li><a href="{{ url_for('genres') }}">Genres</a></li>
+        <li><a href="{{ url_for('characters') }}">All Characters</a></li>
+        <li><a href="{{ url_for('genres') }}">Characters by Genre</a></li>
+        <li><a href="{{ url_for('users') }}">Characters by User</a></li>
         <!-- Conditional rendering in sidenav -->
         {% if current_user.is_authenticated %}
         <li><a href="{{ url_for('profile', user_id=current_user.id) }}">Profile</a></li>
