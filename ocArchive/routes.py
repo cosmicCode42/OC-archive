@@ -19,17 +19,6 @@ def genres():
     return render_template("genres.html", genres=genres)
     
 
-@app.route("/add_genre", methods=["GET", "POST"])
-def add_genre():
-    # page for adding genres directly
-    if request.method == "POST":
-        genre = Genre(genre_name=request.form.get("genre_name"))
-        db.session.add(genre)
-        db.session.commit()
-        return redirect(url_for("genres"))
-    return render_template("add_genre.html")
-    
-
 @app.route("/create_character", methods=["GET", "POST"])
 @login_required
 def create_character():
@@ -64,7 +53,7 @@ def create_character():
         )
         db.session.add(character)
         db.session.commit()
-        return redirect(url_for("home"))
+        return redirect(url_for("characters"))
     return render_template("create_character.html", genres=genres, users=users)
 
 
