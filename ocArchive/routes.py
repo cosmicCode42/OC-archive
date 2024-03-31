@@ -18,6 +18,15 @@ def genres():
     chars = list(Character.query.order_by(Character.char_name).all()) # puts all characters in a list
     users = list(User.query.order_by(User.id).all()) # puts all users in a list
     return render_template("genres.html", genres=genres, chars=chars, users=users)
+
+
+@app.route("/users")
+def users():
+    # list of users with characters
+    genres = list(Genre.query.order_by(Genre.genre_name).all())
+    chars = list(Character.query.order_by(Character.char_name).all())
+    users = list(User.query.order_by(User.id).all())
+    return render_template("users.html", genres=genres, chars=chars, users=users)
     
 
 @app.route("/create_character", methods=["GET", "POST"])
