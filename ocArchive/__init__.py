@@ -37,3 +37,4 @@ def load_user(user_id):
 
 # Configure the login manager
 login_manager.login_view = 'login'
+login_manager.login_message = "Please provide your Archiver ID."
