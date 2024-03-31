@@ -158,3 +158,13 @@ def logout():
     logout_user()
     flash("Logged out successfully.", "success")
     return redirect(url_for("home"))
+
+
+@app.route("/profile/<int:user_id>")
+@login_required
+def profile(user_id):
+    # User profile page
+    genres = list(Genre.query.order_by(Genre.genre_name).all())
+    chars = list(Character.query.order_by(Character.char_name).all())
+    user = User.query.get_or_404(user_id)
+    return render_template("profile.html", chars=chars, genres=genres, user=user)

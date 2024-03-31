@@ -1,3 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+
+<h3 class="center-align">{{ user.user_name }}</h3>
+
+<h4 class="center-align">Characters</h4>
+
+{% for char in chars %}
+{% if char.user_id == current_user.id %}
+<h5><a href="#!">{{ char.char_name }}</a></h5>
+<p>{{ char.char_blurb }}</p>
+{% endif %}
+{% endfor %}
+
 {% endblock %}
