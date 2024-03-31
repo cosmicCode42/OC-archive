@@ -9,6 +9,7 @@
 {% for user in users %}
 <p>Created by {{ user.user_name }}.</p>
 {% endfor %}
+<p><a href="{{ url_for('edit_character', char_id=char.id) }}" class="btn green accent-4">Edit</a>
 {% endfor %}
 
 <div class="row">

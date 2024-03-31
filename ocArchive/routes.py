@@ -67,6 +67,41 @@ def create_character():
         return redirect(url_for("home"))
     return render_template("create_character.html", genres=genres, users=users)
 
+@app.route("/edit_character/<int:char_id>", methods=["GET", "POST"])
+@login_required
+def edit_character(char_id):
+    # edit an existing character
+    char = Character.query.get_or_404(char_id)
+    genres = list(Genre.query.order_by(Genre.genre_name).all())
+    users = list(User.query.order_by(User.id).all())
+    if char.user_id != current_user.id:
+        abort(403)
+    if request.method == "POST":
+        genre_id = request.form.get("genre_id")
+        genre_name = request.form.get("new_genre_name")
+
+        if genre_id and genre_id != 'new_genre':
+            genre_id = int(genre_id)
+        elif genre_name:
+            existing_genre = Genre.query.filter_by(genre_name=genre_name).first()
+            if existing_genre:
+                genre_id = existing_genre.id
+            else:
+                new_genre = Genre(genre_name=genre_name)
+                db.session.add(new_genre)
+                db.session.commit()
+                genre_id = new_genre.id
+
+        char.char_name=request.form.get("character_name")
+        char.char_blurb=request.form.get("character_blurb")
+        char.char_descript=request.form.get("character_description")
+        char.char_is_usable=bool(True if request.form.get("character_is_usable") else False)
+        char.genre_id=genre_id
+        char.user_id=current_user.id
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("edit_character.html", char=char, genres=genres, users=users)
+
 
 @app.route("/characters")
 def characters():
