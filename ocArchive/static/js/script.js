@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let collapsibles = document.querySelectorAll('.collapsible');
     M.Collapsible.init(collapsibles);
 
+    // dropdown initialisation
+    let dropdown = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdown);
+
     // display/hide Add New Genre option in character creation page
     const genreSelect = document.getElementById('genre_id');
     const newGenreInput = document.getElementById('new_genre_input');
