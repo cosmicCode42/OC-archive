@@ -35,7 +35,7 @@ def add_genre():
 def create_character():
     # add characters, including their genres
     genres = list(Genre.query.order_by(Genre.genre_name).all())
-    users = list(User.query.order_by(User.id).all())
+    users = list(User.query.order_by(User.id).all()) # puts all users in a list
     if request.method == "POST":
         genre_id = request.form.get("genre_id")
         genre_name = request.form.get("new_genre_name")
@@ -73,7 +73,8 @@ def characters():
     # list of characters
     genres = list(Genre.query.order_by(Genre.genre_name).all())
     chars = list(Character.query.order_by(Character.char_name).all()) # puts all characters in a list
-    return render_template("characters.html", chars=chars, genres=genres)
+    users = list(User.query.order_by(User.id).all())
+    return render_template("characters.html", chars=chars, genres=genres, users=users)
 
 
 @app.route("/id_gain", methods=["GET", "POST"])

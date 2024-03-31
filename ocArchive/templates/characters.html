@@ -6,6 +6,9 @@
 {% for char in chars %}
 <h4><a href="#!">{{ char.char_name }}</a></h4>
 <p>{{ char.char_blurb }}</p>
+{% for user in users %}
+<p>Created by {{ user.user_name }}.</p>
+{% endfor %}
 {% endfor %}
 
 <div class="row">
