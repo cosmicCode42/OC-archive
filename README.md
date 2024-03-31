@@ -100,7 +100,7 @@ As a user of the site, I want:
 	- **Problem:** I still encountered login issues.
 		- **Solution:** To cut a long story short: my ``User`` model  was not using the extremely necessary ``UserMixin`` provided by Flask-Login. Once I fixed all these issues, the login system was functioning just fine.
 - **Problem:** Creating a new genre during character creation threw a `ValueError: invalid literal for int() with base 10: 'new_genre'`.
-	-**Solution:** My code in `routes.py` was taking the string value `new_genre` as the genre ID, which was not correct. I edited the code to properly account for a new genre being selected (if `genre_id` is `new_genre`, the code does not set that as the actual genre ID).
+	- **Solution:** My code in `routes.py` was taking the string value `new_genre` as the genre ID, which was not correct. I edited the code to properly account for a new genre being selected (if `genre_id` is `new_genre`, the code does not set that as the actual genre ID).
 - **Problem:** Using the checkbox for `character_is_usable` during character submission threw a `TypeError: Not a boolean value: 'on'`.
 	- **Solution:** Checkboxes, by default, return `on` or `off`. The value needed to be a boolean, so I added code to convert `character_is_usable` to a boolean (`True` if `on` or `False` otherwise.)
 - **Problem:** Ran into a few errors with characters being displayed on the Characters page.
