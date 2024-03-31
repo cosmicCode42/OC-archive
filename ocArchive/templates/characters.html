@@ -6,22 +6,23 @@
 {% for char in chars %}
 <h4><a href="#!">{{ char.char_name }}</a></h4>
 <p>{{ char.char_blurb }}</p>
-{% for user in users %}
-<p>Created by {{ user.user_name }}.</p>
-    <!-- Only show edit\delete buttons to user that made the character -->
+    {% for user in users %}
+        {% if user.id == char.user_id %}
+        <p>Created by {{ user.user_name }}.</p>
+        {% endif %}
+    {% endfor %}
     {% if current_user.is_authenticated and current_user.id == char.user_id %}
     <p><a href="{{ url_for('edit_character', char_id=char.id) }}" class="btn green accent-4">Edit</a>
     <p><a href="{{ url_for('confirm_character_delete', char_id=char.id) }}" class="btn red accent-4">Delete</a></p>
     {% endif %}
 {% endfor %}
-{% endfor %}
 
-<div class="row">
-    <div class="col s12 center-align">
-        <a href="{{ url_for('create_character') }}" class="btn indigo lighten-2">
-            Create Character
-        </a>
+    <div class="row">
+        <div class="col s12 center-align">
+            <a href="{{ url_for('create_character') }}" class="btn indigo lighten-2">
+                Create Character
+            </a>
+        </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
