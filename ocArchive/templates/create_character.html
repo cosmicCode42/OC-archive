@@ -8,7 +8,8 @@
         <!-- character name -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="character_name" name="character_name" minlength="3" maxlength="125" type="text" class="validate" required>
+                <input id="character_name" name="character_name" minlength="3" maxlength="125" type="text"
+                    class="validate" required>
                 <label for="character_name">Character Name</label>
             </div>
         </div>
@@ -46,10 +47,18 @@
                 <select id="genre_id" name="genre_id" class="validate" required>
                     <option value="" disabled selected>Choose Genre</option>
                     {% for genre in genres %}
-                        <option value="{{ genre.id }}">{{ genre.genre_name }}</option>
+                    <option value="{{ genre.id }}">{{ genre.genre_name }}</option>
                     {% endfor %}
+                    <option value="new_genre">Add New Genre</option> <!-- option to add new genres directly -->
                 </select>
                 <label for="genre_id">Genre</label>
+            </div>
+        </div>
+        <!-- new genre input -->
+        <div id="new_genre_input" class="row" style="display: none;">
+            <div class="input-field col s12">
+                <input id="new_genre_name" name="new_genre_name" type="text" class="validate" maxlength="100">
+                <label for="new_genre_name">Enter New Genre Name</label>
             </div>
         </div>
         <!-- submit button -->

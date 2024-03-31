@@ -37,12 +37,29 @@ def create_character():
     genres = list(Genre.query.order_by(Genre.genre_name).all())
     users = list(User.query.order_by(User.id).all())
     if request.method == "POST":
+        genre_id = request.form.get("genre_id")
+        genre_name = request.form.get("new_genre_name")
+
+        if genre_id and genre_id != 'new_genre':
+            genre_id = int(genre_id)
+        elif genre_name:
+            # Check if the genre already exists
+            existing_genre = Genre.query.filter_by(genre_name=genre_name).first()
+            if existing_genre:
+                genre_id = existing_genre.id
+            else:
+                # Create a new genre
+                new_genre = Genre(genre_name=genre_name)
+                db.session.add(new_genre)
+                db.session.commit()
+                genre_id = new_genre.id
+
         character = Character(
             char_name=request.form.get("character_name"),
             char_blurb=request.form.get("character_blurb"),
             char_descript=request.form.get("character_description"),
-            char_is_usable=request.form.get("character_is_usable"),
-            genre_id=request.form.get("genre_id"),
+            char_is_usable=bool(True if request.form.get("character_is_usable") else False),
+            genre_id=genre_id,
             user_id=current_user.id
         )
         db.session.add(character)
