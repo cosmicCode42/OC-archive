@@ -67,6 +67,7 @@ def create_character():
         return redirect(url_for("home"))
     return render_template("create_character.html", genres=genres, users=users)
 
+
 @app.route("/edit_character/<int:char_id>", methods=["GET", "POST"])
 @login_required
 def edit_character(char_id):
@@ -101,6 +102,12 @@ def edit_character(char_id):
         db.session.commit()
         return redirect(url_for("home"))
     return render_template("edit_character.html", char=char, genres=genres, users=users)
+
+
+@app.route("/delete_character/<int:char_id>", methods=["GET", "POST"])
+@login_required
+def delete_character(char_id):
+    return redirect(url_for("home"))
 
 
 @app.route("/characters")
