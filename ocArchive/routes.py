@@ -8,15 +8,15 @@ import bcrypt
 @app.route("/")
 def home():
     # home page
-    genres = list(Genre.query.order_by(Genre.genre_name).all()) #puts all genres in a list
-    return render_template("index.html", genres=genres)
+    return render_template("index.html")
 
 
 @app.route("/genres")
 def genres():
     # list of genres with characters
-    genres = list(Genre.query.order_by(Genre.genre_name).all())
-    return render_template("genres.html", genres=genres)
+    genres = list(Genre.query.order_by(Genre.genre_name).all()) #puts all genres in a list
+    chars = list(Character.query.order_by(Character.char_name).all()) # puts all characters in a list
+    return render_template("genres.html", genres=genres, chars=chars)
     
 
 @app.route("/create_character", methods=["GET", "POST"])

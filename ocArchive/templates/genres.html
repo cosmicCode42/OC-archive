@@ -3,8 +3,31 @@
 
 <h3 class="center-align">Genres</h3>
 
-{% for genre in genres %}
-<h4><a href="#!">{{ genre.genre_name }}</a></h4>
-{% endfor %}
+<ul class="collapsible popout">
+    {% for genre in genres %}
+    <li>
+        <div class="collapsible-header">{{ genre.genre_name }}</div>
+        <div class="collapsible-body">
+            {% for char in chars %}
+            {% if char.genre_id == genre.id %}
+                <span>{{ char.char_name }}</span>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<!-- use collapsibles! -->
+<!-- <ul class="collapsible">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+    </li>
+  </ul> -->
 
 {% endblock %}
