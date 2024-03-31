@@ -145,7 +145,7 @@ def login():
         user = User.query.filter_by(user_name=user_name).first()
         if user and user.check_password(password):
             login_user(user)
-            flash("Logged in successfully.", "success")
+            flash(f"Welcome back, {user.user_name}!", "success")
             return redirect(url_for("home"))
         else:
             flash("Invalid username or password.", "error")
