@@ -31,10 +31,13 @@ The OC Archive will be a site where users can upload original characters, or 'OC
 
 ### User Stories
 
-- As a user, I want a way to find characters by the same user.
-- As a user, I want a way to find characters from the same genre (action, fantasy, slice of life, romance, and so on).
+- As a user, I want a way to create characters.
+- As a user, I want a way to edit my existing characters.
+- As a user, I want a way to delete a character I don't want on the Archive.
 - As a user, I want an account where all my characters can be stored.
 - As a user, I want my characters to not be editable by other users.
+- As a user, I want a way to find characters from the same genre (action, fantasy, slice of life, romance, and so on).
+- As a user, I want a way to find characters by the same user.
 
 ### Design Choices
 
