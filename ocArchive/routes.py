@@ -93,9 +93,24 @@ def edit_character(char_id):
     return render_template("edit_character.html", char=char, genres=genres, users=users)
 
 
+@app.route("/confirm_character_delete/<int:char_id>", methods=["GET", "POST"])
+@login_required
+def confirm_character_delete(char_id):
+    # warning before user deletes their character
+    char = Character.query.get_or_404(char_id)
+    if char.user_id != current_user.id:
+        abort(403)
+    return render_template("confirm_character_delete.html", char=char)
+
+
 @app.route("/delete_character/<int:char_id>", methods=["GET", "POST"])
 @login_required
 def delete_character(char_id):
+    # allows a user to delete their character
+    char = Character.query.get_or_404(char_id)
+    db.session.delete(char)
+    db.session.commit()
+    flash("Character successfully deleted.", "success")
     return redirect(url_for("home"))
 
 
