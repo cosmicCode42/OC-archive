@@ -70,7 +70,6 @@ I have used MS Paint to sketch out a basic wireframe for the site:
 
 ## Future Additions
 - Addition of an administrator user system. Admins would be able to delete genres or remove users from the Archive.
-- Functionality for a user to delete their account from the Archive.
 
 ## Testing
 
