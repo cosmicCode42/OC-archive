@@ -10,6 +10,9 @@
         <p>{{ char.char_descript }}</p>
         {% endif %}
         <p>Created by {{ user.user_name }}.</p>
+        {% if char.char_is_usable %}
+        <p>Anyone can use this character. Just give credit!</p>
+        {% endif %}
     </div>
 </div>
 

@@ -15,23 +15,26 @@
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">{{ char.char_name }}<i
                             class="material-icons right">more_vert</i></span>
-                    <p>{{ char.char_blurb }}</p>
                     {% for genre in genres %}
                         {% if genre.id == char.genre_id %}
-                        <p>Genre: {{ genre.genre_name }}.</p>
+                        <p>{{ genre.genre_name }}</p>
                         {% endif %}
                     {% endfor %}
                 </div>
-                {% if current_user.is_authenticated and current_user.id == char.user_id %}
                 <div class="card-action">
+                    <a href="{{ url_for('character', char_id=char.id) }}" class="btn accent-4">More</a>
+                {% if current_user.is_authenticated and current_user.id == char.user_id %}
                     <a href="{{ url_for('edit_character', char_id=char.id) }}" class="btn green accent-4">Edit</a>
                     <a href="{{ url_for('confirm_character_delete', char_id=char.id) }}" class="btn red accent-4">Delete</a>
-                </div>
                 {% endif %}
+                </div>
                 <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">Card Title<i
+                    <span class="card-title grey-text text-darken-4">{{ char.char_name }}<i
                             class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    <p>{{ char.char_blurb }}</p>
+                    {% if char.char_is_usable %}
+                    <p>Anyone can use this character. Just give credit!</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
