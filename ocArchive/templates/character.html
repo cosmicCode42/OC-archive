@@ -4,7 +4,11 @@
 <div class="row">
     <div class="col s12 center-align">
         <h4 class="center-align">{{ char.char_name }}</h4>
-        <p class="center-align">Genre: {{ genre.genre_name }}</p>
+        <h5 class="center-align">Genre: {{ genre.genre_name }}</h5>
+        <p>{{ char.char_blurb }}</p>
+        {% if char.char_descript %}
+        <p>{{ char.char_descript }}</p>
+        {% endif %}
         <p>Created by {{ user.user_name }}.</p>
     </div>
 </div>
