@@ -116,12 +116,12 @@ def confirm_character_delete(char_id):
 @app.route("/delete_character/<int:char_id>", methods=["GET", "POST"])
 @login_required
 def delete_character(char_id):
-    # allows a user to delete their character
+    # deletes a user's character
     char = Character.query.get_or_404(char_id)
     db.session.delete(char)
     db.session.commit()
     flash("Character successfully deleted.", "success")
-    return redirect(url_for("home"))
+    return redirect(url_for("home"))    
 
 
 @app.route("/characters")
@@ -131,6 +131,15 @@ def characters():
     chars = list(Character.query.order_by(Character.char_name).all()) # puts all characters in a list
     users = list(User.query.order_by(User.id).all())
     return render_template("characters.html", chars=chars, genres=genres, users=users)
+
+
+@app.route("/character/<int:char_id>", methods=["GET", "POST"])
+def character(char_id):
+    # in-depth character page
+    char = Character.query.get_or_404(char_id)
+    user = User.query.filter_by(id=char.user_id).first()
+    genre = Genre.query.filter_by(id=char.genre_id).first()
+    return render_template("character.html", char=char, genre=genre, user=user)
 
 
 @app.route("/id_gain", methods=["GET", "POST"])

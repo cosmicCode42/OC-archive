@@ -4,7 +4,7 @@
 <h3 class="center-align">Characters</h3>
 
 {% for char in chars %}
-<h4><a href="#!">{{ char.char_name }}</a></h4>
+<h4><a href="{{ url_for('character', char_id=char.id) }}">{{ char.char_name }}</a></h4>
 <p>{{ char.char_blurb }}</p>
     {% for user in users %}
         {% if user.id == char.user_id %}
