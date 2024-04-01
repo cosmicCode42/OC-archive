@@ -118,6 +118,8 @@ def confirm_character_delete(char_id):
 def delete_character(char_id):
     # deletes a user's character
     char = Character.query.get_or_404(char_id)
+    if char.user_id != current_user.id:
+        abort(403)
     db.session.delete(char)
     db.session.commit()
     flash("Character successfully deleted.", "success")
@@ -215,6 +217,8 @@ def confirm_user_delete(user_id):
 def delete_user(user_id):
     # delete user's account
     user = User.query.get_or_404(user_id)
+    if user_id != current_user.id:
+        abort(403)
     flash(f"So long, {user.user_name}, and thanks for all the fish.", "success")
     db.session.delete(user)
     db.session.commit()
