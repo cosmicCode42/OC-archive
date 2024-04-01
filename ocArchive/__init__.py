@@ -38,8 +38,3 @@ def load_user(user_id):
 # Configure the login manager
 login_manager.login_view = 'login'
 login_manager.login_message = "Please provide your Archiver ID."
-
-
-# Call db.create_all() within the application context
-with app.app_context():
-    db.create_all()
