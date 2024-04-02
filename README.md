@@ -52,6 +52,8 @@ The OC Archive is a very simplistic design: a black navbar and white pages with 
 
 ![Characters sorted by user.](docs/oc-archive-characters-by-user-page-display.png)
 
+![User Ann Walker's character, May Marie.](docs/oc-archive-character-page-display.png)
+
 ![Registration page.](docs/oc-archive-registration-page-display.png)
 
 ![Login page.](docs/oc-archive-login-page-display.png)
@@ -60,15 +62,19 @@ When logged in, the site's navbar changes; the registration and login buttons ar
 
 ![Navbar changes.](docs/oc-archive-logged-in-changes.png)
 
-The logged in user can also edit and delete their characters from the characters pages.
+The logged in user can also edit and delete their characters from the characters pages...
 
 ![User ZZZen's view of the characters page.](docs/oc-archive-characters-logged-in-buttons.png)
 
 ![User ZZZen's view of the characters by genre page.](docs/oc-archive-characters-genre-logged-in-buttons.png)
 
+... as well as the specific character's page.
+
+![User Ann Walker's view of her character's page.](docs/oc-archive-character-page-logged-in-buttons.png)
+
 Users have a profile page displaying all their characters, as well as an option to delete their account.
 
-![Sample profile page.](docs/oc-archive-profile-page-display.png)
+![User Ann Walker's profile page.](docs/oc-archive-profile-page-display.png)
 
 The site shifts to accommodate several screen sizes while keeping the same basic layout. The navbar is collapsed into a sidenav that can be expanded.
 
