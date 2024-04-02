@@ -10,6 +10,7 @@ Third Milestone Project for the Web Development course offered by Code Institute
 	- [Design Choices](#design-choices)
 2. [Planning](#planning)
 	- [Wireframes](#wireframes)
+ 	- [Schema](#schema)
 3. [Future Additions](#future-additions)
 4. [Testing](#testing)
 	- [Bugfixes](#bugfixes)
@@ -94,8 +95,7 @@ The site shifts to accommodate several screen sizes while keeping the same basic
 I did not create a wireframe for this project.
 
 ### Schema
-The database uses 3 models: User, Genre, and Character.
-![Database schema diagram.](https://drawsql.app/teams/gabe-1/diagrams/oc-archive/embed)
+The database uses 3 models: User, Genre, and Character. User and Genre each have a One-to-Many relationship to Character (each user can have multiple characters, and each genre can contain multiple characters).
 
 ## Future Additions
 - Addition of an administrator user system. Admins would be able to delete genres or remove users from the Archive.
