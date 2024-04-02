@@ -66,7 +66,7 @@ Users have a profile page displaying all their characters, as well as an option 
 
 The site shifts to accommodate several screen sizes while keeping the same basic layout. The navbar is collapsed into a sidenav that can be expanded.
 
-![Tablet screen, 768px wide.](docs/oc-archive-mobile-page-display.png)
+![Tablet screen, 768px wide.](docs/oc-archive-mobile-page-display.jpg)
 
 ![Tablet screen sidenav demonstration.](docs/oc-archive-mobile-sidenav.jpg)
 
