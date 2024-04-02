@@ -42,7 +42,7 @@ The OC Archive will be a site where users can upload original characters, or 'OC
 ### Design Choices
 
 #### Interface
-Overall description. I'm thinking to make the actual site reminiscent of a scroll of parchment or a stone tablet.
+The OC Archive is a very simplistic design: a black navbar and white pages with plain black text.
 
 ![Home page.](docs/page-display.png)
 
@@ -54,28 +54,19 @@ On smaller screens...
 
 ![Mobile screen, 425px wide.](docs/mobile-l-display.png)
 
-#### Colours
-![Palette](docs/palette.png)
-- `#000000` is used for ...
-- `#000000` is used for ...
-- `#000000` is used for ...
-- `#000000` is used for ...
-- `#000000` is used for ...
-
 ## Planning
 
 ### Wireframes
-I have used MS Paint to sketch out a basic wireframe for the site:
-![Wireframe](docs/wireframe.png)
+I did not create a wireframe for this project.
 
 ## Future Additions
 - Addition of an administrator user system. Admins would be able to delete genres or remove users from the Archive.
 
 ## Testing
 
-<!-- The site has been tested extensively to ensure the best user experience across multiple screen sizes.
+The site has been tested extensively to ensure the best user experience across multiple screen sizes.
 
-The developer used **W3C CSS Validation Service** and **W3C Markup Validation Service** to check the validity of the HTML and CSS. -->
+The developer used **W3C CSS Validation Service** and **W3C Markup Validation Service** to check the validity of the HTML and CSS.
 
 ### Testing Process
 
@@ -89,26 +80,24 @@ The developer used **W3C CSS Validation Service** and **W3C Markup Validation Se
 
 As a user of the site, I want:
 - a way to create characters.
-	- a
-	- b
+	- Ensured that a user could create any number of characters.
+ 	- Ensured that characters were properly added to the database when created. 
 - a way to edit my existing characters.
-	- a
-	- b
+	- Ensured that a user could edit their created characters.
+ 	- Ensured that character edits were properly added to the database.
 - a way to delete a character I don't want on the Archive.
-	- a
-	- b
+	- Ensured that a user could delete any character they created.
+	- Ensured that deleting a character properly removed it from the database.
 - an account where all my characters can be stored.
-	- a
-	- b
+	- Ensured that the login system functions as intended.
+	- Ensured that all characters are properly keyed to the users that created them.
 - my characters to not be editable by other users.
-	- a
-	- b
+	- Ensured that only the user that created a character could edit them (by only displaying the edit button for the correct user and forbidding other users from editing).
+ 	- Ensured that only the user that created a character could delete them (by only displaying the delete button for the correct user and forbidding other users from deleting).
 - a way to find characters from the same genre (action, fantasy, slice of life, romance, and so on).
-	- a
-	- b
+	- Ensured that the genres page correctly displays characters from each genre.
 - a way to find characters by the same user.
-	- a
-	- b
+	- Ensured that the users page correctly displays users from each genre.
 
 ### Bugfixes
 - **Problem:** I could not access the site at all upon running the app, as ``current_user`` did not exist. This is despite me having imported all necessary components from ``flask_login``.
@@ -151,12 +140,38 @@ As a user of the site, I want:
 - [W3C Markup Validation](https://validator.w3.org/#validate_by_input)
 
 ## Deployment
-Deploy to GitHub Pages or a similar website hosting and rendering service. The html files can also be opened from local storage (this requires downloading all files in a dedicated folder; this can be done with the git pull command).
+Deploy to Heroku or a similar website hosting and rendering service. The html files can also be opened from local storage (this requires downloading all files in a dedicated folder; this can be done with the git pull command), though the pages won't properly work without the Python code added.
 
-To deploy this site to Heroku from [its GitHub repository](https://github.com/cosmicCode42/CI-MP3), the following steps were taken.
+To deploy this site to Heroku from [its GitHub repository](https://github.com/cosmicCode42/OC-archive), the following steps were taken.
 
-1. Log in to Heroku.
-2. 
+1. Log in to a PostgreSQL database service. (I used [Aiven](https://aiven.io/), as [ElephantSQL is shutting down soon](https://www.elephantsql.com/blog/end-of-life-announcement.html).)
+2. Create a new PostgreSQL database. On Aiven, this is done by creating a new service. You must create a project beforehand, then add the service inside that project.
+3. Copy the database URL (service URI on Aiven).
+4. Make sure to create a `requirements.txt` file with the terminal command `pip freeze --local > requirements.txt`. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a requirements.txt file.)
+5. Make sure to create a Procfile and add the command `web: python run.py1` into it. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a Procfile.)
+6. Your `__init__.py` file will require a few lines of code (my `__init__.py` already has these so if copying mine this can be safely ignored):
+	`app = Flask(__name__)
+ 	app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")`
+
+	`if os.environ.get("DEVELOPMENT") == "True":
+     	    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+ 	else:
+     	    uri = os.environ.get("DATABASE_URL")
+     	    if uri.startswith("postgres://"):
+                 uri = uri.replace("postgres://", "postgresql://", 1)
+            app.config["SQLALCHEMY_DATABASE_URI"] = uri`
+Make sure to save the file and add, commit and push it to your repository.
+8. Log in to [Heroku](https://www.heroku.com/).
+9. Create a new app.
+10. Go to the Settings of your app and click Reveal Config Vars. Add your copied database URL as `DATABASE_URL`, then add each of the other environmental variables: `DEBUG` (`True` or `False` depending on the current state of the project), `IP` (usually set to `0.0.0.0`), `PORT` (usually `5000`), `SECRET_KEY` (you make a unique one).
+11. Go to the Deploy tab of your app. In the Deployment method section, select "Connect to GitHub". You can click "Enable Automatic Deploys" so that each time you commit to your GitHub repository, the Heroku app is redeployed.
+12. Click the "More" button next to "Open App" and select "Run console". Run `python3` in the Heroku console.
+13. I had an issue with generating the tables in the database using the `db.create_all()` command in the Heroku console. Instead, I added this code at the end of my `__init__.py` file:
+	`with app.app_context():
+    	    db.create_all()`
+Using `python run.py` in the console then generated the tables, after which I could remove this code. Run `exit()` to exit the console when finished.
+
+If the steps are followed correctly, when opening the app, the website should be fully functional. The new database will be empty, so you will have to add new users
 
 At the moment of submitting the milestone project, the development branch and main branch are identical.
 
@@ -195,3 +210,5 @@ You will also need to install Flask-SQLAlchemy, psycopg2, Flask-Login and bcrypt
 Code not written by me and not covered below is attributed to proper sources in comments within the code. All other code is written by me.
 
 #### Guidance and Inspiration
+
+Used OpenAI's [ChatGPT](https://chat.openai.com/) for help with checking my code and figuring out the login system.
