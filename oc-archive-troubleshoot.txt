@@ -1,0 +1,16 @@
+Your `__init__.py` file will require a few lines of code (my `__init__.py` already has these so if copying mine this can be safely ignored):
+	app = Flask(__name__)
+ 	app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+
+	if os.environ.get("DEVELOPMENT") == "True":
+     	    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
+ 	else:
+     	    uri = os.environ.get("DATABASE_URL")
+     	    if uri.startswith("postgres://"):
+                 uri = uri.replace("postgres://", "postgresql://", 1)
+            app.config["SQLALCHEMY_DATABASE_URI"] = uri
+
+I had an issue with generating the tables in the database using the `db.create_all()` command in the Heroku console. Instead, I added this code at the end of my `__init__.py` file:
+	with app.app_context():
+    	    db.create_all()
+Using `python run.py` in the console then generated the tables, after which I could remove this code. Run `exit()` to exit the console when finished.
