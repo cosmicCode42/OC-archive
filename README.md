@@ -50,21 +50,23 @@ The OC Archive is a very simplistic design: a black navbar and white pages with 
 
 ![Characters page.](docs/oc-archive-characters-page-display.png)
 
+![Registration page.](docs/oc-archive-registration-page-display.png)
+
+![Login page.](docs/oc-archive-login-page-display.png)
+
+Characters sorted by genre or user show up as cards, with card action buttons leading to a more comprehensive character page.
+
 ![Characters sorted by genre.](docs/oc-archive-characters-by-genre-page-display.png)
 
 ![Characters sorted by user.](docs/oc-archive-characters-by-user-page-display.png)
 
 ![User Ann Walker's character, May Marie.](docs/oc-archive-character-page-display.png)
 
-![Registration page.](docs/oc-archive-registration-page-display.png)
-
-![Login page.](docs/oc-archive-login-page-display.png)
-
 When logged in, the site's navbar changes; the registration and login buttons are replaced by profile and logout buttons.
 
 ![Navbar changes.](docs/oc-archive-logged-in-changes.png)
 
-The logged in user can also edit and delete their characters from the characters pages...
+The logged-in user can also edit and delete their characters from the characters pages...
 
 ![User ZZZen's view of the characters page.](docs/oc-archive-characters-logged-in-buttons.png)
 
@@ -74,7 +76,7 @@ The logged in user can also edit and delete their characters from the characters
 
 ![User Ann Walker's view of her character's page.](docs/oc-archive-character-page-logged-in-buttons.png)
 
-Users have a profile page displaying all their characters, as well as an option to delete their account.
+Users have a profile page displaying all their characters and an option to delete their account.
 
 ![User Ann Walker's profile page.](docs/oc-archive-profile-page-display.png)
 
@@ -109,7 +111,7 @@ The developer used **W3C CSS Validation Service** and **W3C Markup Validation Se
 
 ### Testing Process
 
-In order to make sure the site renders acceptably across several screen sizes, I made liberal use of the DevTools offered by Google Chrome, as well as testing load times, mobile and desktop, with the Lighthouse Chrome extension.
+To make sure the site renders acceptably across several screen sizes, I made liberal use of the DevTools offered by Google Chrome, as well as testing load times, mobile and desktop, with the Lighthouse Chrome extension.
 
 ![Testing main page desktop version.](docs/lighthouse-test-desktop.png)
 
@@ -152,8 +154,8 @@ As a user of the site, I want:
 - **Problem:** Ran into a few errors with characters being displayed on the Characters page.
 	- **Solution:** A naming issue - I had `chars=chars` in the Characters route, but was using `for character in characters` on the Characters page. Changing `character` to `char` and `characters` to `chars` solved the issue.
 - **Problem:** Each character created was displaying every user as its creator on the Characters page.
-	- **Solution:** The code on the Characters page was looping through ALL users in the database without checking to see that the user had indeed created the character first. I edited the code so that only the user that actually matched the creator of each character is displayed as the creator.
-	- **Problem:** The page was still displaying one edit and delete button for each user, albeit only to the user that actually made the character.
+	- **Solution:** The code on the Characters page was looping through ALL users in the database without checking to see that the user had indeed created the character first. I edited the code so that only the user that matched the creator of each character is displayed as the creator.
+	- **Problem:** The page was still displaying one edit and delete button for each user, albeit only to the user that made the character.
 		- **Solution:** Coding issue. The display text was put inside the for loop that ran through each user. Moving that code outside the loop solved the issue.
 
 ## Technologies Used
@@ -168,7 +170,7 @@ As a user of the site, I want:
 	- [Flask-Login](https://pypi.org/project/Flask-Login/)
     - [SQL-Alchemy](https://docs.sqlalchemy.org/en/20/)
 	- [psycopg2](https://www.psycopg.org/docs/) (required to work with PostgreSQL)
-	- [bcrypt](https://pypi.org/project/bcrypt/)
+    - [bcrypt](https://pypi.org/project/bcrypt/)
 - [PostgreSQL](https://www.postgresql.org/docs/)
 
 ### Testing
