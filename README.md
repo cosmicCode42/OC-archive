@@ -150,16 +150,16 @@ To deploy this site to Heroku from [its GitHub repository](https://github.com/co
 4. Make sure to create a `requirements.txt` file with the terminal command `pip freeze --local > requirements.txt`. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a requirements.txt file.)
 5. Make sure to create a Procfile and add the command `web: python run.py1` into it. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a Procfile.)
 6. Your `__init__.py` file will require a few lines of code (my `__init__.py` already has these so if copying mine this can be safely ignored):
-	``app = Flask(__name__)
- 	app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")``
+	app = Flask(__name__)
+ 	app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
-	``if os.environ.get("DEVELOPMENT") == "True":
+	if os.environ.get("DEVELOPMENT") == "True":
      	    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DB_URL")
  	else:
      	    uri = os.environ.get("DATABASE_URL")
      	    if uri.startswith("postgres://"):
                  uri = uri.replace("postgres://", "postgresql://", 1)
-            app.config["SQLALCHEMY_DATABASE_URI"] = uri``
+            app.config["SQLALCHEMY_DATABASE_URI"] = uri
 Make sure to save the file and add, commit and push it to your repository.
 8. Log in to [Heroku](https://www.heroku.com/).
 9. Create a new app.
@@ -167,8 +167,8 @@ Make sure to save the file and add, commit and push it to your repository.
 11. Go to the Deploy tab of your app. In the Deployment method section, select "Connect to GitHub". You can click "Enable Automatic Deploys" so that each time you commit to your GitHub repository, the Heroku app is redeployed.
 12. Click the "More" button next to "Open App" and select "Run console". Run `python3` in the Heroku console.
 13. I had an issue with generating the tables in the database using the `db.create_all()` command in the Heroku console. Instead, I added this code at the end of my `__init__.py` file:
-	``with app.app_context():
-    	    db.create_all()``
+	with app.app_context():
+    	    db.create_all()
 Using `python run.py` in the console then generated the tables, after which I could remove this code. Run `exit()` to exit the console when finished.
 
 If the steps are followed correctly, when opening the app, the website should be fully functional. The new database will be empty, so you will have to add new users
