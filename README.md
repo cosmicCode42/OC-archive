@@ -60,6 +60,12 @@ When logged in, the site's navbar changes; the registration and login buttons ar
 
 ![Navbar changes.](docs/oc-archive-logged-in-changes.png)
 
+The logged in user can also edit and delete their characters from the characters pages.
+
+![User ZZZen's view of the characters page.](docs/oc-archive-characters-logged-in-buttons.png)
+
+![User ZZZen's view of the characters by genre page.](docs/oc-archive-characters-genre-logged-in-buttons.png)
+
 Users have a profile page displaying all their characters, as well as an option to delete their account.
 
 ![Sample profile page.](docs/oc-archive-profile-page-display.png)
