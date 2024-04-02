@@ -169,6 +169,20 @@ def id_gain():
     return render_template("id_gain.html")
 
 
+@app.route("/password_reset/", methods=["GET", "POST"])
+def password_reset():
+    if request.method == "POST":
+        user_name = request.form.get("user_name")
+        user=User.query.filter_by(user_name=user_name).first()
+        user_id=user.id
+        flash(f"So long, {user.user_name}, and thanks for all the fish.", "success")
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for("home"))
+    return render_template("password_reset.html")
+
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
