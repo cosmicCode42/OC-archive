@@ -8,7 +8,7 @@
 {% if chars %}
     <!-- displays all characters of the current user -->
     {% for char in chars %}
-    <h5><a href="#!">{{ char.char_name }}</a></h5>
+    <h5><a href="{{ url_for('character', char_id=char.id) }}">{{ char.char_name }}</a></h5>
     <p>{{ char.char_blurb }}</p>
     {% endfor %}
 {% else %}
