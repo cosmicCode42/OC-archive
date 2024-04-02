@@ -171,14 +171,14 @@ To deploy this site to Heroku from [its GitHub repository](https://github.com/co
 3. Copy the database URL (service URI on Aiven).
 4. Make sure to create a `requirements.txt` file with the terminal command `pip freeze --local > requirements.txt`. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a requirements.txt file.)
 5. Make sure to create a Procfile and add the command `web: python run.py1` into it. Make sure to save the file and add, commit and push it to your repository. (Unnecessary here since this project already has a Procfile.)
-6. Your `__init__.py` file will require a few lines of code (my `__init__.py` already has these so if copying mine this can be safely ignored). Refer to oc-archive-troubleshoot for the exact code.
+6. Your `__init__.py` file will require a few lines of code (my `__init__.py` already has these so if copying mine this can be safely ignored). Refer to [oc-archive-troubleshoot](oc-archive-troubleshoot) for the exact code.
 Make sure to save the file and add, commit and push it to your repository.
 8. Log in to [Heroku](https://www.heroku.com/).
 9. Create a new app.
 10. Go to the Settings of your app and click Reveal Config Vars. Add your copied database URL as `DATABASE_URL`, then add each of the other environmental variables: `DEBUG` (`True` or `False` depending on the current state of the project), `IP` (usually set to `0.0.0.0`), `PORT` (usually `5000`), `SECRET_KEY` (you make a unique one).
 11. Go to the Deploy tab of your app. In the Deployment method section, select "Connect to GitHub". You can click "Enable Automatic Deploys" so that each time you commit to your GitHub repository, the Heroku app is redeployed.
 12. Click the "More" button next to "Open App" and select "Run console". Run `python3` in the Heroku console.
-13. I had an issue with generating the tables in the database using the `db.create_all()` command in the Heroku console. Refer to oc-archive-troubleshoot for the exact solution to this issue.
+13. I had an issue with generating the tables in the database using the `db.create_all()` command in the Heroku console. Refer to [oc-archive-troubleshoot](oc-archive-troubleshoot) for the exact solution to this issue.
 
 If the steps are followed correctly, when opening the app, the website should be fully functional. The new database will be empty, so you will have to add new users
 
