@@ -98,11 +98,11 @@ The developer used **W3C CSS Validation Service** and **W3C Markup Validation Se
 
 ### Testing Process
 
-<!-- In order to make sure the site renders acceptably across several screen sizes, I made liberal use of the DevTools offered by Google Chrome, as well as testing load times, mobile and desktop, with the Lighthouse Chrome extension.
+In order to make sure the site renders acceptably across several screen sizes, I made liberal use of the DevTools offered by Google Chrome, as well as testing load times, mobile and desktop, with the Lighthouse Chrome extension.
 
 ![Testing main page desktop version.](docs/lighthouse-test-desktop.png)
 
-![Testing main page mobile version.](docs/lighthouse-test-mobile.png) -->
+![Testing main page mobile version.](docs/lighthouse-test-mobile.png)
 
 ### User Stories Testing
 
