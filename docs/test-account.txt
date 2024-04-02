@@ -1,0 +1,4 @@
+Here is the account that you can use to test out the site's functions, if you don't want to create a new account.
+
+Username: Phill
+Password: phillY250
